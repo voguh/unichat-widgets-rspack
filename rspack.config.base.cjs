@@ -113,6 +113,14 @@ function createBaseConfig(projectRoot) {
             runtimeChunk: false
         },
 
+        module: {
+            parser: {
+                css: { url: false },
+                "css/auto": { url: false },
+                "css/module": { url: false }
+            }
+        },
+
         plugins: [
             new UniChatManifestPlugin({
                 name: widgetName,
@@ -138,7 +146,8 @@ function createBaseConfig(projectRoot) {
                     },
                     { from: path.join(widgetDirectory, "fields.json"), noErrorOnMissing: true },
                     { from: path.join(widgetDirectory, "manifest.yaml"), noErrorOnMissing: true },
-                    { from: path.join(widgetDirectory, "widget.html"), noErrorOnMissing: true }
+                    { from: path.join(widgetDirectory, "widget.html"), noErrorOnMissing: true },
+                    { from: path.join(widgetDirectory, "widget.css"), noErrorOnMissing: true }
                 ]
             })
         ]
