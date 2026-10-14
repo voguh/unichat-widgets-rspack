@@ -1,0 +1,8 @@
+name: {{widgetName}}
+description: {{widgetDescription}}
+version: {{widgetVersion}}
+author: {{widgetAuthor}}
+license: {{widgetLicense}}
+homepage: {{widgetHomepage}}
+dependencies:
+  - unichat@[{{unichatVersion}},)

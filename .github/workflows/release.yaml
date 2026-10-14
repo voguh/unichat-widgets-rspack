@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+*'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  prepare-release:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.3
+
+      - name: Check version consistency
+        run: |
+          export PACKAGE_VERSION="$(jq -r '.version' package.json)"
+          TAG_NAME="${{ github.ref_name }}"
+          if [ "$PACKAGE_VERSION" != "$TAG_NAME" ]; then
+            echo "Error: The version in package.json ($PACKAGE_VERSION) does not match the release tag ($TAG_NAME)."
+            exit 1
+          fi
+
+  publish:
+    runs-on: ubuntu-24.04
+    needs: [prepare-release]
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.3
+
+      - name: Pack package
+        run: |
+          export VERSION="${{ github.ref_name }}"
+          mkdir -p dist
+          npm pack . --pack-destination dist
+          mv "dist/voguh-unichat-widgets-rspack-$VERSION.tgz" "dist/unichat-widgets-rspack-$VERSION.tgz"
+          for file in dist/*; do
+            if [ -f "$file" ]; then
+              (cd "$(dirname "$file")" && sha256sum "$(basename "$file")" > "$(basename "$file").sha256")
+            fi
+          done
+
+      - name: Create and upload Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          export VERSION="${{ github.ref_name }}"
+          if [[ "$VERSION" == *"-"* || "$VERSION" == *"+"* ]]; then
+            gh release create "$VERSION" dist/* --prerelease
+          else
+            gh release create "$VERSION" dist/*
+          fi
