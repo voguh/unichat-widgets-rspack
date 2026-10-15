@@ -1,6 +1,6 @@
 {
     "name": "@voguh/unichat-widgets-rspack",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "Rspack preset for building UniChat widgets",
     "author": "Voguh <voguhofc@protonmail.com>",
     "license": "EPL-2.0",
@@ -14,6 +14,6 @@
     "files": ["index.cjs", "rspack.config.base.cjs", "plugins", "scripts", "templates"],
     "peerDependencies": {
         "@rspack/core": ">=2.0.0",
-        "@voguh/unichat-widgets": "*"
+        "@voguh/unichat-api": "*"
     }
 }

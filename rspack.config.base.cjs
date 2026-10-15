@@ -20,7 +20,7 @@ const { UniChatWidgetDirectoryPlugin } = require("./plugins/UniChatWidgetDirecto
 
 /* ================================================================================================================== */
 
-const UNICHAT_WIDGETS_PACKAGE = "@voguh/unichat-widgets";
+const UNICHAT_API_PACKAGE = "@voguh/unichat-api";
 
 function readJSON(filePath) {
     const content = fs.readFileSync(filePath, { encoding: "utf-8" });
@@ -35,17 +35,17 @@ function resolveWidgetName(pkgName) {
 function resolveUnichatVersion(projectRoot, pkgJSON) {
     const dependencies = pkgJSON.dependencies ?? {};
     const devDependencies = pkgJSON.devDependencies ?? {};
-    const dependencySpec = dependencies[UNICHAT_WIDGETS_PACKAGE] ?? devDependencies[UNICHAT_WIDGETS_PACKAGE];
+    const dependencySpec = dependencies[UNICHAT_API_PACKAGE] ?? devDependencies[UNICHAT_API_PACKAGE];
 
     if (dependencySpec != null) {
         const tarballName = dependencySpec.split("/").pop();
-        const tarballMatch = tarballName.match(/^unichat-widgets-(.*)\.tgz$/);
+        const tarballMatch = tarballName.match(/^unichat-api-(.*)\.tgz$/);
         if (tarballMatch != null) {
             return tarballMatch[1];
         }
     }
 
-    const installedPkgJSONPath = path.join(projectRoot, "node_modules", UNICHAT_WIDGETS_PACKAGE, "package.json");
+    const installedPkgJSONPath = path.join(projectRoot, "node_modules", UNICHAT_API_PACKAGE, "package.json");
     const installedPkgJSON = readJSON(installedPkgJSONPath);
 
     return installedPkgJSON.version;
