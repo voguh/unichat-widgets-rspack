@@ -1,0 +1,79 @@
+{
+    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+    "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true, "root": "./" },
+    "files": {
+        "includes": [
+            "**",
+            "!!**/{generated,dist,dist-showcase,coverage,public,node_modules,.swc}/**"
+        ]
+    },
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 120,
+        "lineEnding": "lf"
+    },
+    "linter": {
+        "enabled": true,
+        "domains": {  "react": "recommended" },
+        "rules": {
+            "preset": "recommended",
+            "complexity": {
+                "noUselessConstructor": "off"
+            },
+            "correctness": {
+                "noUnusedVariables": "warn"
+            },
+            "style": {
+                "useConst": "warn",
+                "noNonNullAssertion": "off",
+                "noDescendingSpecificity": "off"
+            },
+            "suspicious": {
+                "noExplicitAny": "off",
+                "noEmptyBlockStatements": "off"
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "quoteStyle": "double",
+            "semicolons": "always",
+            "arrowParentheses": "always",
+            "trailingCommas": "none"
+        },
+        "globals": ["navigator", "window", "document"]
+    },
+    "css": {
+        "parser": {
+            "cssModules": true,
+            "tailwindDirectives": true
+        }
+    },
+    "json": {
+        "formatter": { "enabled": false },
+        "linter": { "enabled": false }
+    },
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": {
+                    "level": "on",
+                    "options": {
+                        "groups": [
+                            ["preact", "preact/**", ":NODE:"],
+                            ":BLANK_LINE:",
+                            [":PACKAGE:", "!~*/**", "!preact", "!preact/**"],
+                            ":BLANK_LINE:",
+                            ["~*/**"],
+                            ":BLANK_LINE:",
+                            ["./**", "../**"]
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

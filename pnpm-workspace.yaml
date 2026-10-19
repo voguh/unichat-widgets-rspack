@@ -1,0 +1,7 @@
+saveExact: true
+savePrefix: ""
+minimumReleaseAge: 10080
+minimumReleaseAgeExclude:
+  - "@voguh/*"
+blockExoticSubdeps: true
+allowBuilds: {}

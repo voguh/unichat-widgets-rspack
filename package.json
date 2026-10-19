@@ -11,9 +11,20 @@
     "bin": {
         "unichat-widgets": "./scripts/unichat-widgets.cjs"
     },
-    "files": ["index.cjs", "rspack.config.base.cjs", "plugins", "scripts", "templates"],
+    "files": [
+        "plugins",
+        "scripts",
+        "templates",
+        "index.cjs",
+        "LICENSE",
+        "README.md",
+        "rspack.config.base.cjs"
+    ],
     "peerDependencies": {
         "@rspack/core": ">=2.0.0",
         "@voguh/unichat-api": "*"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "2.5.15"
     }
 }

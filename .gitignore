@@ -1,0 +1,5 @@
+/.idea/*
+/.vscode/*
+!/.vscode/settings.json
+!/.vscode/*.code-snippets
+/node_modules/*
