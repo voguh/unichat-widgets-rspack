@@ -1,6 +1,6 @@
 {
     "name": "@voguh/unichat-widgets-rspack",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Rspack preset for building UniChat widgets",
     "author": "Voguh <voguhofc@protonmail.com>",
     "license": "EPL-2.0",
