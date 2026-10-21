@@ -85,7 +85,7 @@ function createBaseConfig(projectRoot) {
     const pkgJSON = readJSON(path.join(projectRoot, "package.json"));
     const widgetName = resolveWidgetName(pkgJSON.name);
     const unichatVersion = resolveUnichatVersion(projectRoot, pkgJSON);
-    const fieldsSchemaUrl = `https://cdn.jsdelivr.net/gh/voguh/unichat@${unichatVersion}/widgets/fields-schema.json`;
+    const fieldsSchemaUrl = `https://cdn.jsdelivr.net/gh/voguh/unichat@${unichatVersion}/unichat-api/widgets/fields-schema.json`;
 
     const widgetDirectory = path.join(projectRoot, "widget");
 
